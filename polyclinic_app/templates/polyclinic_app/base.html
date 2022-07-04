@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'polyclinic_app/css/style.css' %}">
+    {% block style %}
+    {% endblock style %}
+    <title>Поликлиники РБ</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header" style="color: #000;">header</header>
+        <main class="main">
+            {% block content %}
+            {% endblock content %}
+        </main>
+        <footer class="footer" style="color: #000;">footer</footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.content {
+}
+
+.cities {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.city-link {    
+    margin: 10px;
+    display: block;
+    width: 45%;
+    min-height: 150px;
+    text-align: center;
+    line-height: 150px;
+    background-color: darkkhaki;
+    color: #753939;
+    font-family: 'Merriweather';
+    font-weight: 700;
+}
