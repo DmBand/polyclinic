@@ -4,6 +4,7 @@ from .models import *
 
 class RegionAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
+    list_display = ('name', 'slug')
 
 
 class CityAdmin(admin.ModelAdmin):

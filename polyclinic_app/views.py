@@ -8,26 +8,12 @@ def index_view(request):
     return render(request, 'polyclinic_app/index.html', context)
 
 
-def brest_region_view(request):
-    pass
+def city_view(request, slug_url):
+    region = Region.objects.get(slug=slug_url)
+    cities = region.city_set.all().order_by('name')
+    context = {'title': region.name, 'cities': cities}
+    return render(request, 'polyclinic_app/city.html', context)
 
 
-def vitebsk_region_view(request):
-    pass
-
-
-def grodno_region_view(request):
-    context = {'title': 'Гродненская область'}
-    return render(request, 'polyclinic_app/grodno_region.html', context)
-
-
-def gomel_region_view(request):
-    pass
-
-
-def minsk_region_view(request):
-    pass
-
-
-def mogilev_region_view(request):
+def polyclinic_view(request, slug_url):
     pass
