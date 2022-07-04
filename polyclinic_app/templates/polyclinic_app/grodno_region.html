@@ -1,7 +1,6 @@
 {% extends 'polyclinic_app/base.html' %}
 {% load static %}
 
-
 {% block style %}
 <link rel="stylesheet" href="{% static 'polyclinic_app/css/index.css' %}">
 {% endblock style %}
@@ -11,12 +10,5 @@
 {% endblock title %}
 
 {% block content %}
-<div class="content">
-    <h1 class="main-title">Выберите область</h1>
-    <div class="cities">
-        {% for r in regions %}
-            <a href="{% url 'polyclinic_app:region' r.slug %}" class="city-link">{{ r.name }}</a>
-        {% endfor %}
-    </div>
-</div>
+<h1 class="main-title">Выберите поликлинику</h1>
 {% endblock content %}

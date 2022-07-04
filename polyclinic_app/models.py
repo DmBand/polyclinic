@@ -3,6 +3,7 @@ from django.db import models
 
 class Region(models.Model):
     name = models.CharField(max_length=50, verbose_name='область')
+    slug = models.SlugField(max_length=50, verbose_name='url')
 
     class Meta:
         verbose_name = 'область'
@@ -14,6 +15,7 @@ class Region(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=50, verbose_name='город')
+    slug = models.SlugField(max_length=50, verbose_name='url')
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='область')
 
     class Meta:
@@ -29,6 +31,7 @@ class Polyclinic(models.Model):
     addres = models.CharField(max_length=100, verbose_name='адрес')
     phone = models.CharField(max_length=50, verbose_name='телефон регистратуры')
     url = models.URLField(max_length=300, verbose_name='сайт', blank=True)
+    making_an_appointment = models.URLField(max_length=300, verbose_name='онлайн-запись')
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='город')
 
     class Meta:

@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from .models import *
 
-# Create your views here.
+
 def index_view(request):
-    context = {'title': 'Поликлиники РБ'}
+    regions = Region.objects.values('name', 'slug')
+    context = {'title': 'Поликлиники РБ', 'regions': regions}
     return render(request, 'polyclinic_app/index.html', context)
 
 

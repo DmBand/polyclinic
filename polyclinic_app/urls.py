@@ -6,5 +6,5 @@ app_name = 'polyclinic_app'
 
 urlpatterns = [
     path('', index_view, name='index'),
-    path('grodno_region/', grodno_region_view, name='grodno_region'),    
+    path('region/<slug:slug_url>/', grodno_region_view, name='region'),
 ]
