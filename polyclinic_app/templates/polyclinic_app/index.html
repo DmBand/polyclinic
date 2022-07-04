@@ -1,9 +1,14 @@
 {% extends 'polyclinic_app/base.html' %}
 {% load static %}
 
+
 {% block style %}
 <link rel="stylesheet" href="{% static 'polyclinic_app/css/index.css' %}">
 {% endblock style %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock title %}
 
 {% block content %}
 <div class="content">
@@ -11,7 +16,7 @@
     <div class="cities">
         <a href="" class="city-link">Брестская</a>
         <a href="" class="city-link">Витебская</a>
-        <a href="" class="city-link">Гродненская</a>
+        <a href="{% url 'polyclinic_app:grodno_region' %}" class="city-link">Гродненская</a>
         <a href="" class="city-link">Гомельская</a>                
         <a href="" class="city-link">Минская</a>
         <a href="" class="city-link">Могилевская</a>

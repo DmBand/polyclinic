@@ -1,3 +1,39 @@
 from django.db import models
 
-# Create your models here.
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, verbose_name='область')
+
+    class Meta:
+        verbose_name = 'область'
+        verbose_name_plural = 'области'
+
+    def __str__(self):
+        return self.name
+
+
+class City(models.Model):
+    name = models.CharField(max_length=50, verbose_name='город')
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='область')
+
+    class Meta:
+        verbose_name = 'город'
+        verbose_name_plural = 'города'
+
+    def __str__(self):
+        return self.name
+
+
+class Polyclinic(models.Model):
+    name = models.CharField(max_length=50, verbose_name='навание')
+    addres = models.CharField(max_length=100, verbose_name='адрес')
+    phone = models.CharField(max_length=50, verbose_name='телефон регистратуры')
+    url = models.URLField(max_length=300, verbose_name='сайт', blank=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='город')
+
+    class Meta:
+        verbose_name = 'поликлиника'
+        verbose_name_plural = 'поликлиники'
+
+    def __str__(self):
+        return self.name

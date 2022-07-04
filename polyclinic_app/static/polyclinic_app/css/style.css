@@ -30,11 +30,9 @@ h1, h2, h3, h4, h5, h6 {
 html, body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    color: #000;
+    color: #fff;
     font-size: 20px;
-    /* background-color: aquamarine; */
-    /* background-color: lightgreen; */
-    background-color: #7febbf;
+    background-color: #f5f0e1;
 }
 
 @font-face {
@@ -51,23 +49,26 @@ html, body {
 
 .wrapper {
     min-height: 100%;
-    width: 100%;
-    max-width: 1440px;
     display: flex;
     flex-direction: column;
     font-family: 'Merriweather';
     font-weight: 400;
     color: #000;
-    margin: 0 auto;
-    background-color: #7febbf;
+    /* background-color: #6dd4cf; */
+    background-color: #f5f0e1;
 }
 
 .header {
     text-align: center;
+    background-color: #ee8b6d;
+    min-height: 50px;
 }
 
 .main {
     flex: 1 1 auto;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .main-title {
@@ -75,12 +76,14 @@ html, body {
     margin: 20px 0 30px;
     text-transform: uppercase;
     font-family: 'Merriweather';
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #4b2525;
+    color: #1e3d59;
 }
 
 .footer {
     text-align: center;
+    background-color: #ee8b6d;
+    min-height: 50px;
 }
