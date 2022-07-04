@@ -27,8 +27,8 @@ class City(models.Model):
 
 
 class Polyclinic(models.Model):
-    name = models.CharField(max_length=50, verbose_name='навание')
-    addres = models.CharField(max_length=100, verbose_name='адрес')
+    name = models.CharField(max_length=100, verbose_name='навание')
+    address = models.CharField(max_length=100, verbose_name='адрес')
     phone = models.CharField(max_length=50, verbose_name='телефон регистратуры')
     url = models.URLField(max_length=300, verbose_name='сайт', blank=True)
     making_an_appointment = models.URLField(max_length=300, verbose_name='онлайн-запись')
