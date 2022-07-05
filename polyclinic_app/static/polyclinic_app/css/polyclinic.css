@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     width: 45%;
-    min-height: 160px;
+    min-height: 205px;
     margin: 10px;
     font-family: 'Merriweather';
     font-weight: 400;
@@ -52,6 +52,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     border-radius: 100px;
+    text-align: center;
 }
 
 .p-url {

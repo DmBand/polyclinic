@@ -18,10 +18,13 @@
                 <h2 class="p-title">{{ p.name }}</h2>
                 <p class="p-address">ул. {{ p.address }}</p>
                 <p class="p-phone">Регистратура: <span class="tel">{{ p.phone }}</span></p>   
-                <a href="{{ p.making_an_appointment }}" class="mp-link">Записаться на прием</a>                                             
-                <a href="{{ p.url }}" class="p-url">официальный сайт</a>
+                <a href="{{ p.making_an_appointment }}" class="mp-link" target="_blank">Записаться на прием</a>                                             
+                <a href="{{ p.url }}" class="p-url" target="_blank">официальный сайт</a>
             </div>
         {% endfor %}
     </div>
 </div>
 {% endblock content %}
+{% block script %}
+<script src="{% static 'polyclinic_app/js/block.js' %}"></script>
+{% endblock script %}
