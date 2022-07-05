@@ -1,0 +1,66 @@
+.polyclinics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.polyclinic { 
+    padding: 10px;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    min-height: 205px;
+    margin: 10px;
+    font-family: 'Merriweather';
+    font-weight: 400;
+    font-size: 18px;
+    background-color: #1e3d59;
+    color: #f5f0e1;
+}
+
+.p-title {
+    color: #ee8b6d;
+    font-weight: 700;
+    text-align: center;
+}
+
+.p-address {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.p-phone {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.tel {
+    color: #ee8b6d;
+}
+
+.mp-link {
+    margin-top: 15px;
+    padding: 10px 15px;
+    display: block;
+    background-color: #ffc13b;
+    color: #1e3d59;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 100px;
+    text-align: center;
+}
+
+.p-url {
+    margin-top: 15px;
+    color: #f5f0e1;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
