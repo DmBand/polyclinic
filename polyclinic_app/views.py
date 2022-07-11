@@ -26,6 +26,7 @@ def polyclinic_view(request, slug_url):
     polyclinics = city.polyclinic_set.all()
     context = {
         'title': f'Поликлиники: {city.name}',
-        'polyclinics': polyclinics
+        'polyclinics': polyclinics,
+        'phone_code': city.phone_code
     }
     return render(request, 'polyclinic_app/polyclinic.html', context)
