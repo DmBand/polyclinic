@@ -35,6 +35,7 @@
 .p-phone {
     margin-top: 10px;
     font-size: 15px;
+    color: #f5f0e1;
 }
 
 .tel {
@@ -63,4 +64,29 @@
     text-decoration: underline;
     letter-spacing: 1px;
     font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .p-title {
+        font-size: 15px;
+    }
+
+    .p-address, 
+    .p-phone {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 550px) {
+    .polyclinics {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        padding: 0 10px;
+        margin-bottom: 20px;
+    }
+
+    .polyclinic {
+        width: 100%;
+        margin: 5px;
+    }
 }

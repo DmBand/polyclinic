@@ -6,20 +6,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'polyclinic_app/images/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'polyclinic_app/css/style.css' %}">
     {% block style %}
     {% endblock style %}
     {% block title %}
     {% endblock title %}
-</head>
+</head> 
 <body>
     <div class="wrapper">
-        <header class="header" style="color: #000;">header</header>
+        <header class="header">
+            <a href="{% url 'polyclinic_app:index' %}" class="main-link" title="На главную"></a>
+            <form action="" class="search-form" method="post">
+                {% csrf_token %}    
+                <input type="text" name="city" id="1" class="input" placeholder="Введите название города">
+                <button type="submit" class="submit">Найти</button>
+                {% if messages %}
+                {% for m in messages %}
+                <p class="error">{{ m }}</p>
+                {% endfor %}
+                {% endif %}
+            </form>
+        </header>
         <main class="main">
             {% block content %}
             {% endblock content %}
         </main>
-        <footer class="footer" style="color: #000;">footer</footer>
+        <footer class="footer">
+            <div class="contact-me">
+                <p class="f-text">Нет Вашей поликлиники?</p>
+                <a href="mailto:d.bandysik@gmail.com" class="mail-link">Напишите мне</a>
+            </div>
+            <div class="api-info"></div>
+        </footer>
     </div>
     {% block script %}
     {% endblock script %}

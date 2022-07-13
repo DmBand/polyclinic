@@ -16,6 +16,7 @@ class Region(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=50, verbose_name='город')
     slug = models.SlugField(max_length=50, verbose_name='url')
+    phone_code = models.CharField(max_length=10, verbose_name='телефонный код')
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='область')
 
     class Meta:
