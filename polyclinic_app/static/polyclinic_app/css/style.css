@@ -69,19 +69,16 @@ html, body {
 }
 
 .main-link {
-    color: #000;
-    font-size: 18px;
-    text-decoration: underline;
+    background: url('../images/home40.svg');
+    width: 40px;
+    height: 40px;
 }
 
 .search-form {
     padding: 10px 0;
     color: #000;
-}
-
-.label {
-    font-size: 18px;
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .input {
@@ -89,6 +86,7 @@ html, body {
     height: 30px;
     padding: 5px 10px;
     border-radius: 10px;
+    text-align: center;
 }
 
 .input:focus {
@@ -128,17 +126,19 @@ html, body {
 .info-title {
     text-align: center;
     margin: 20px 0 0;
+    padding: 5px 20px;
     text-transform: uppercase;
     font-family: 'Merriweather';
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 2px;
     color: #ee8b6d;
+    text-align: center;
 }
 
 .main-title {
     text-align: center;
-    margin: 20px 0 30px;
+    margin: 15px 0 15px;
     text-transform: uppercase;
     font-family: 'Merriweather';
     font-size: 30px;
@@ -182,3 +182,48 @@ html, body {
     top: -3px;
     margin-left: 5px;
 }
+
+@media (max-width: 768px) {
+    .info-title {
+        font-size: 15px;
+    }
+
+    .main-title {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 550px) {
+    .search-form {
+        flex-direction: column;
+    }
+
+    .input {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .submit {
+        align-self: center;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 425px) {
+    .header {
+        padding: 0 10px;
+    }
+
+    .info-title {
+        font-size: 13px;
+    }
+
+    .main-title {
+        font-size: 20px;
+    }
+
+    .footer {
+        padding: 0 10px;
+    }
+}   

@@ -6,7 +6,7 @@ from .services import city_search
 def index_view(request):
     regions = Region.objects.values('name', 'slug')
     context = {
-        'title': 'Поликлиники РБ',
+        'title': 'Поликлиники Беларуси',
         'regions': regions,
     }
     if request.method == 'POST':

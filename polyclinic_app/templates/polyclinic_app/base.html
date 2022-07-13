@@ -16,12 +16,10 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <a href="{% url 'polyclinic_app:index' %}" class="main-link">На главную</a>
+            <a href="{% url 'polyclinic_app:index' %}" class="main-link" title="На главную"></a>
             <form action="" class="search-form" method="post">
-                {% csrf_token %}
-                <label class="label">Найти город
-                    <input type="text" name="city" class="input" placeholder="Введите название города">
-                </label>
+                {% csrf_token %}    
+                <input type="text" name="city" id="1" class="input" placeholder="Введите название города">
                 <button type="submit" class="submit">Найти</button>
                 {% if messages %}
                 {% for m in messages %}

@@ -9,7 +9,7 @@
     margin: 10px;
     display: block;
     width: 45%;
-    min-height: 150px;
+    height: 150px;
     text-align: center;
     line-height: 150px;
     background-color: #1e3d59;
@@ -21,6 +21,7 @@
 
 .city-link {    
     margin: 10px;
+    padding: 5px 10px;
     display: block;
     width: 45%;
     min-height: 30px;
@@ -31,4 +32,56 @@
     font-family: 'Merriweather';
     font-weight: 700;
     letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .region-link {
+        height: 100px;
+        line-height: 100px;
+    }
+
+    .city-link {
+        font-size: 18px;
+    } 
+}
+
+@media (max-width: 550px) {
+    .region-link {
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    .city-link {
+        font-size: 15px;
+        margin: 5px;
+    } 
+}
+
+@media (max-width: 425px) {
+    .regions-and-cities {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .region-link {
+        font-size: 13px;
+        height: 50px;
+        line-height: 30px;
+        padding: 10px;
+        width: 100%; 
+    }
+
+    .city-link {
+        font-size: 13px;  
+        width: 100%;     
+    }
+}
+
+
+@media (max-width: 300px) {
+    .region-link {
+        font-size: 11px;
+    }
 }
