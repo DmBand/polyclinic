@@ -54,7 +54,6 @@ html, body {
     font-family: 'Merriweather';
     font-weight: 400;
     color: #000;
-    /* background-color: #6dd4cf; */
     background-color: #f5f0e1;
 }
 
@@ -62,6 +61,49 @@ html, body {
     text-align: center;
     background-color: #ee8b6d;
     min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-form {
+    padding: 10px;
+    color: #000;
+}
+
+.label {
+    font-size: 18px;
+    text-align: center;
+}
+
+.input {
+    margin-left: 10px;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 15px #1e3d59;
+}
+
+.submit {
+    height: 30px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.error {
+    padding: 5px 0 0;
+    font-size: 12px;
+    text-align: center;
+    color: #ff0000;
 }
 
 .main {

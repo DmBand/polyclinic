@@ -11,10 +11,13 @@
     {% endblock style %}
     {% block title %}
     {% endblock title %}
-</head>
+</head> 
 <body>
     <div class="wrapper">
-        <header class="header" style="color: #000;">header</header>
+        <header class="header">
+           {% block header %}
+           {% endblock header %}
+        </header>
         <main class="main">
             {% block content %}
             {% endblock content %}
