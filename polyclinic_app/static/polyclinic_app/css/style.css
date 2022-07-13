@@ -58,16 +58,24 @@ html, body {
 }
 
 .header {
+    padding: 0 20px;
     text-align: center;
     background-color: #ee8b6d;
     min-height: 50px;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
 }
 
+.main-link {
+    color: #000;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
 .search-form {
-    padding: 10px;
+    padding: 10px 0;
     color: #000;
 }
 
@@ -86,6 +94,10 @@ html, body {
 .input:focus {
     outline: none;
     box-shadow: 0 0 15px #1e3d59;
+}
+
+::placeholder {
+    text-align: center;
 }
 
 .submit {

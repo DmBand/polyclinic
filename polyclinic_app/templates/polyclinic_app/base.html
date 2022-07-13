@@ -15,8 +15,19 @@
 <body>
     <div class="wrapper">
         <header class="header">
-           {% block header %}
-           {% endblock header %}
+            <a href="{% url 'polyclinic_app:index' %}" class="main-link">На главную</a>
+            <form action="" class="search-form" method="post">
+                {% csrf_token %}
+                <label class="label">Найти город
+                    <input type="text" name="city" class="input" placeholder="Введите название города">
+                </label>
+                <button type="submit" class="submit">Найти</button>
+                {% if messages %}
+                {% for m in messages %}
+                <p class="error">{{ m }}</p>
+                {% endfor %}
+                {% endif %}
+            </form>
         </header>
         <main class="main">
             {% block content %}

@@ -10,21 +10,6 @@
 <title>{{ title }}</title>
 {% endblock title %}
 
-{% block header %}
-<form action="{% url 'polyclinic_app:index' %}" class="search-form" method="post">
-    {% csrf_token %}
-    <label class="label">Найти город
-        <input type="text" name="city" class="input">
-    </label>
-    <button type="submit" class="submit">Найти</button>
-    {% if messages %}
-    {% for m in messages %}
-    <p class="error">{{ m }}</p>
-    {% endfor %}
-    {% endif %}
-</form>
-{% endblock header %}
-
 {% block content %}
 <div class="content">
     <h1 class="main-title">Выберите область</h1>

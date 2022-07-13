@@ -1,8 +1,6 @@
-from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
-from .models import *
+from .models import Region, City
+from .services import city_search
 
 
 def index_view(request):
@@ -12,13 +10,9 @@ def index_view(request):
         'regions': regions,
     }
     if request.method == 'POST':
-        get_city = request.POST.get('city')
-        exists = City.objects.filter(name__iexact=get_city.title()).exists()
-        if exists:
-            city = City.objects.get(name=get_city.title())
+        city = city_search(request=request)
+        if city:
             return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
-        else:
-            messages.info(request, 'Поиск не дал результатов...')
     return render(request, 'polyclinic_app/index.html', context)
 
 
@@ -29,6 +23,10 @@ def city_view(request, slug_url):
         'title': region.name,
         'cities': cities
     }
+    if request.method == 'POST':
+        city = city_search(request=request)
+        if city:
+            return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
     return render(request, 'polyclinic_app/city.html', context)
 
 
@@ -40,6 +38,8 @@ def polyclinic_view(request, slug_url):
         'polyclinics': polyclinics,
         'phone_code': city.phone_code
     }
+    if request.method == 'POST':
+        city = city_search(request=request)
+        if city:
+            return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
     return render(request, 'polyclinic_app/polyclinic.html', context)
-
-
