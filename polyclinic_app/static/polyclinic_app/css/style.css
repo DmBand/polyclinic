@@ -148,7 +148,37 @@ html, body {
 }
 
 .footer {
+    padding: 0 20px;
     text-align: center;
     background-color: #ee8b6d;
     min-height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact-me {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #1e3d59;
+}
+
+.mail-link {
+    color: #1e3d59;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: 700;
+    position: relative;
+}
+
+.mail-link::after {
+    position: absolute;
+    content: "";
+    background: url('../images/mail.svg');
+    width: 24px;
+    height: 24px;
+    top: -3px;
+    margin-left: 5px;
 }
