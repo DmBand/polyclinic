@@ -125,6 +125,17 @@ html, body {
     margin: 0 auto;
 }
 
+.info-title {
+    text-align: center;
+    margin: 20px 0 0;
+    text-transform: uppercase;
+    font-family: 'Merriweather';
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ee8b6d;
+}
+
 .main-title {
     text-align: center;
     margin: 20px 0 30px;
