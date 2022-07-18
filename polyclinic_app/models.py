@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -34,6 +35,7 @@ class Polyclinic(models.Model):
     url = models.URLField(max_length=300, verbose_name='сайт', blank=True)
     making_an_appointment = models.URLField(max_length=300, verbose_name='онлайн-запись')
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='город')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
 
     class Meta:
         verbose_name = 'поликлиника'
