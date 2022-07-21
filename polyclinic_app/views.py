@@ -1,19 +1,11 @@
-from django.forms import model_to_dict
-from rest_framework import generics, viewsets
-from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
 from django.shortcuts import render, redirect
 
-from .models import Region, City, Polyclinic
-from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
-from .serialazers import PolyclinicSerialazer
+from .models import Region, City
 from .services import city_search
 
 
 def index_view(request):
+    """ Главная страница """
     regions = Region.objects.values('name', 'slug')
     context = {
         'title': 'Поликлиники Беларуси',
@@ -27,10 +19,11 @@ def index_view(request):
 
 
 def city_view(request, slug_url):
+    """ Страница выбора города """
     region = Region.objects.get(slug=slug_url)
-    cities = region.city_set.all().order_by('name')
+    cities = region.city.all().order_by('name')
     context = {
-        'title': region.name,
+        'title': region.region,
         'cities': cities
     }
     if request.method == 'POST':
@@ -41,10 +34,11 @@ def city_view(request, slug_url):
 
 
 def polyclinic_view(request, slug_url):
+    """ Страница выбора поликлиники """
     city = City.objects.get(slug=slug_url)
-    polyclinics = city.polyclinic_set.all()
+    polyclinics = city.polyclinic.all()
     context = {
-        'title': f'Поликлиники: {city.name}',
+        'title': f'Поликлиники: {city.region}',
         'polyclinics': polyclinics,
         'phone_code': city.phone_code
     }
