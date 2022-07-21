@@ -6,7 +6,7 @@ from .services import city_search
 
 def index_view(request):
     """ Главная страница """
-    regions = Region.objects.values('name', 'slug')
+    regions = Region.objects.values('region', 'slug')
     context = {
         'title': 'Поликлиники Беларуси',
         'regions': regions,
@@ -36,7 +36,7 @@ def city_view(request, slug_url):
 def polyclinic_view(request, slug_url):
     """ Страница выбора поликлиники """
     city = City.objects.get(slug=slug_url)
-    polyclinics = city.polyclinic.all()
+    polyclinics = city.polyclinics.all()
     context = {
         'title': f'Поликлиники: {city.region}',
         'polyclinics': polyclinics,
