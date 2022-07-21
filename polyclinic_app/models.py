@@ -4,7 +4,7 @@ from django.db import models
 
 class Region(models.Model):
     """ Область """
-    name = models.CharField(max_length=50, verbose_name='область')
+    region = models.CharField(max_length=50, verbose_name='область')
     slug = models.SlugField(max_length=50, verbose_name='url')
 
     class Meta:
@@ -12,7 +12,7 @@ class Region(models.Model):
         verbose_name_plural = 'области'
 
     def __str__(self):
-        return self.name
+        return self.region
 
 
 class City(models.Model):
@@ -40,7 +40,7 @@ class Polyclinic(models.Model):
     url = models.URLField(max_length=300, verbose_name='сайт', blank=True)
     making_an_appointment = models.URLField(max_length=300, verbose_name='онлайн-запись')
     city = models.ForeignKey(
-        City, on_delete=models.CASCADE, verbose_name='город', related_name='polyclinic'
+        City, on_delete=models.CASCADE, verbose_name='город', related_name='polyclinics'
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
 
