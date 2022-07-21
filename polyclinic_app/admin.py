@@ -3,8 +3,8 @@ from .models import *
 
 
 class RegionAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
-    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('region',)}
+    list_display = ('region', 'slug')
 
 
 class CityAdmin(admin.ModelAdmin):
