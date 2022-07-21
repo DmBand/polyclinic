@@ -3,6 +3,7 @@ from django.db import models
 
 
 class Region(models.Model):
+    """ Область """
     name = models.CharField(max_length=50, verbose_name='область')
     slug = models.SlugField(max_length=50, verbose_name='url')
 
@@ -15,6 +16,7 @@ class Region(models.Model):
 
 
 class City(models.Model):
+    """ Город """
     name = models.CharField(max_length=50, verbose_name='город')
     slug = models.SlugField(max_length=50, verbose_name='url')
     phone_code = models.CharField(max_length=10, verbose_name='телефонный код')
@@ -31,6 +33,7 @@ class City(models.Model):
 
 
 class Polyclinic(models.Model):
+    """ Поликлиника """
     name = models.CharField(max_length=100, verbose_name='навание')
     address = models.CharField(max_length=100, verbose_name='адрес')
     phone = models.CharField(max_length=50, verbose_name='телефон регистратуры')
