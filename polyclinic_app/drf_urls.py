@@ -1,12 +1,8 @@
-from django.urls import path, include
-from rest_framework import routers
+from django.urls import path
 
-from .drf_views import PolyclinicsAPIView
-
-# router = routers.SimpleRouter()
-# router.register('polyclinics', PolyclinicViewSet, basename='polyclinic')
+from . import drf_views
 
 urlpatterns = [
-    path('get_polyclinics/', PolyclinicsAPIView.as_view())
-    # path('', include(router.urls))
+    path('get_polyclinics/', drf_views.PolyclinicsAPIView.as_view()),
+    path('get_one_polyclinic/<int:pk>/', drf_views.OnePolyclinicAPIView.as_view()),
 ]

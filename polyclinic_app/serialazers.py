@@ -3,12 +3,25 @@ from rest_framework import serializers
 from polyclinic_app.models import Polyclinic, Region, City
 
 
+class PolyclinicWithCitySerializer(serializers.ModelSerializer):
+    """ Одна поликлиника (с городом)"""
+    city = serializers.SlugRelatedField(slug_field='name', read_only=True)
+
+    class Meta:
+        model = Polyclinic
+        exclude = (
+            'id',
+            'user',
+        )
+
+
 class PolyclinicSerializer(serializers.ModelSerializer):
     """ Одна поликлиника (без города)"""
 
     class Meta:
         model = Polyclinic
         fields = (
+            'id',
             'name',
             'address',
             'phone',
@@ -20,13 +33,13 @@ class PolyclinicSerializer(serializers.ModelSerializer):
 class CitySerializer(serializers.ModelSerializer):
     """ Город """
 
-    polyclinic = PolyclinicSerializer(many=True)
+    polyclinics = PolyclinicSerializer(many=True)
 
     class Meta:
         model = City
         fields = (
             'name',
-            'polyclinic',
+            'polyclinics',
         )
 
 
@@ -38,6 +51,6 @@ class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = (
-            'name',
+            'region',
             'city',
         )
