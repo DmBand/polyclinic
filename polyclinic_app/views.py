@@ -1,15 +1,6 @@
-from django.forms import model_to_dict
-from rest_framework import generics, viewsets
-from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
 from django.shortcuts import render, redirect
 
-from .models import Region, City, Polyclinic
-from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
-from .serialazers import PolyclinicSerialazer
+from .models import Region, City
 from .services import city_search
 
 
