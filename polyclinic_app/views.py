@@ -21,7 +21,7 @@ def index_view(request):
 def city_view(request, slug_url):
     """ Страница выбора города """
     region = Region.objects.get(slug=slug_url)
-    cities = region.city_set.all().order_by('name')
+    cities = region.city.all().order_by('name')
     context = {
         'title': region.name,
         'cities': cities
@@ -36,7 +36,7 @@ def city_view(request, slug_url):
 def polyclinic_view(request, slug_url):
     """ Страница выбора поликлиники """
     city = City.objects.get(slug=slug_url)
-    polyclinics = city.polyclinic_set.all()
+    polyclinics = city.polyclinic.all()
     context = {
         'title': f'Поликлиники: {city.name}',
         'polyclinics': polyclinics,
