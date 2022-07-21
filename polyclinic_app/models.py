@@ -18,7 +18,9 @@ class City(models.Model):
     name = models.CharField(max_length=50, verbose_name='город')
     slug = models.SlugField(max_length=50, verbose_name='url')
     phone_code = models.CharField(max_length=10, verbose_name='телефонный код')
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='область')
+    region = models.ForeignKey(
+        Region, on_delete=models.CASCADE, verbose_name='область', related_name='city'
+    )
 
     class Meta:
         verbose_name = 'город'
@@ -34,7 +36,9 @@ class Polyclinic(models.Model):
     phone = models.CharField(max_length=50, verbose_name='телефон регистратуры')
     url = models.URLField(max_length=300, verbose_name='сайт', blank=True)
     making_an_appointment = models.URLField(max_length=300, verbose_name='онлайн-запись')
-    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='город')
+    city = models.ForeignKey(
+        City, on_delete=models.CASCADE, verbose_name='город', related_name='polyclinic'
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
 
     class Meta:
