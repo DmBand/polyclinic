@@ -23,7 +23,7 @@ def city_view(request, slug_url):
     region = Region.objects.get(slug=slug_url)
     cities = region.city.all().order_by('name')
     context = {
-        'title': region.name,
+        'title': region.region,
         'cities': cities
     }
     if request.method == 'POST':
@@ -38,7 +38,7 @@ def polyclinic_view(request, slug_url):
     city = City.objects.get(slug=slug_url)
     polyclinics = city.polyclinic.all()
     context = {
-        'title': f'Поликлиники: {city.name}',
+        'title': f'Поликлиники: {city.region}',
         'polyclinics': polyclinics,
         'phone_code': city.phone_code
     }
