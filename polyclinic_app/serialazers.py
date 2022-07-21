@@ -14,7 +14,6 @@ class PolyclinicSerializer(serializers.ModelSerializer):
             'phone',
             'url',
             'making_an_appointment',
-            'city',
         )
 
 
