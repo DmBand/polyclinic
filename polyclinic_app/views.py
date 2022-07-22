@@ -53,12 +53,12 @@ def polyclinic_view(request, slug_url):
 
 def api_view(request):
     """ Страница документации API """
-    main_host = request.get_host()
-    additional_host = urls.urlpatterns[-1].pattern
+    host = request.get_host()
+    main_url = urls.urlpatterns[-1].pattern
     context = {
         'title': 'Документация API',
-        'main_host': main_host,
-        'additional_host': additional_host,
+        'host': host,
+        'main_url': main_url,
         'all_polyclinics_url': None,
         'one_polyclinic_url': None,
     }
@@ -69,4 +69,8 @@ def api_view(request):
         elif link.name == 'one':
             context['one_polyclinic_url'] = str(link.pattern)[:-9]
 
+    if request.method == 'POST':
+        city = city_search(request=request)
+        if city:
+            return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
     return render(request, 'polyclinic_app/api.html', context)
