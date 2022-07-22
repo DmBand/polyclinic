@@ -23,7 +23,7 @@ def index_view(request):
 def city_view(request, slug_url):
     """ Страница выбора города """
     region = Region.objects.get(slug=slug_url)
-    cities = region.city.all().order_by('city_name')
+    cities = region.cities.all().order_by('city_name')
     context = {
         'title': region.region,
         'cities': cities
