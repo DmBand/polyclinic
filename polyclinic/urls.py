@@ -16,22 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from polyclinic_app.views import *
-from rest_framework import routers
-
-
-# router = routers.DefaultRouter()
-# router.register(r'polyclinics', PolyclinicViewSet, basename='polyclinic')
-# print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('polyclinic_app.urls')),
-    path('api/v1/', include('polyclinic_app.drf_urls')),
-    # path('api/v1/polyclinics/', PolyclinicAPIList.as_view()),
-    # path('api/v1/polyclinics/<int:pk>/', PolyclinicAPIUpdate.as_view()),
-    # path('api/v1/polyclinics_delete/<int:pk>/', PolyclinicAPIDestroy.as_view()),
-    # path('api/v1/', include(router.urls))
-    # path('api/v1/polyclinics/', PolyclinicViewSet.as_view({'get': 'list'})),
-    # path('api/v1/polyclinics/<int:pk>/', PolyclinicViewSet.as_view({'put': 'update'})),
+    # api
+    path('api/v1/', include('polyclinic_app.drf_urls'), name='api'),
 ]

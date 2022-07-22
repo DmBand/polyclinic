@@ -154,6 +154,8 @@ html, body {
     min-height: 50px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .contact-me {
@@ -182,6 +184,13 @@ html, body {
     top: -3px;
     margin-left: 5px;
 }
+
+.api-link {
+    font-size: 14px;
+    color: #1e3d59;
+    font-weight: 700;
+}
+
 
 @media (max-width: 768px) {
     .info-title {
