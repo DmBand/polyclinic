@@ -39,6 +39,7 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
         fields = (
             'city_name',
+            'phone_code',
             'polyclinics',
         )
 
