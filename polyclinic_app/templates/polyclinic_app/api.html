@@ -1,0 +1,23 @@
+{% extends 'polyclinic_app/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'polyclinic_app/css/api.css' %}">
+{% endblock style %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock title %}
+
+{% block content %}
+<div class="content">
+    <h1 class="main-title">Документация по <span class="api-span">API</span></h1>
+    <div class="documentation">
+        <h3 class="api-title">Получение списка всех оптек в разрезе городов и областей:</h3>
+        <p class="api-url">{{host}}/{{main_url}}{{all_polyclinics_url}}</p>
+        <h3 class="api-title">Получение отдельной оптеки:</h3>
+        <p class="api-url">{{host}}/{{main_url}}{{one_polyclinic_url}}<span class="api-span">id</span>/</p>
+        <img src="{% static 'polyclinic_app/images/api_id.jpg' %}" alt="api-img" class="api-img">
+    </div>
+</div>
+{% endblock content %}
