@@ -234,5 +234,20 @@ html, body {
 
     .footer {
         padding: 0 10px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .contact-me {
+        margin-top: 5px;
+        align-items: center;
+    }
+
+    .mail-link {
+        margin-right: 25px;
+    }
+
+    .api-link {
+        margin: 10px 0 5px;
     }
 }   
