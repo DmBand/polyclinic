@@ -32,11 +32,27 @@ class City(models.Model):
         return self.city_name
 
 
+class PhoneNumber(models.Model):
+    """ Номер телефона """
+    name = models.CharField(max_length=30, verbose_name='имя')
+    phone = models.CharField(max_length=50, verbose_name='телефон')
+
+    class Meta:
+        verbose_name = 'телефон'
+        verbose_name_plural = 'телефоны'
+
+    def __str__(self):
+        return self.name
+
+
 class Polyclinic(models.Model):
     """ Поликлиника """
     name = models.CharField(max_length=100, verbose_name='навание')
     address = models.CharField(max_length=100, verbose_name='адрес')
-    phone = models.CharField(max_length=50, verbose_name='телефон регистратуры')
+    # phone = models.CharField(max_length=50, verbose_name='телефон регистратуры')
+    phone = models.ForeignKey(
+        PhoneNumber, on_delete=models.CASCADE, verbose_name='телефон', related_name='polyclinic'
+    )
     url = models.URLField(max_length=300, verbose_name='сайт', blank=True)
     making_an_appointment = models.URLField(max_length=300, verbose_name='онлайн-запись')
     city = models.ForeignKey(
