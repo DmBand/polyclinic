@@ -14,7 +14,7 @@
     <h1 class="main-title">Выберите город</h1>
     <div class="regions-and-cities">
         {% for c in cities %}
-            <a href="{% url 'polyclinic_app:polyclinic' c.slug %}" class="city-link">{{ c.name }}</a>
+            <a href="{% url 'polyclinic_app:polyclinic' c.slug %}" class="city-link">{{ c.city_name }}</a>
         {% endfor %}
     </div>    
 </div>

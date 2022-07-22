@@ -8,8 +8,8 @@ class RegionAdmin(admin.ModelAdmin):
 
 
 class CityAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
-    list_display = ('name', 'region')
+    prepopulated_fields = {'slug': ('city_name',)}
+    list_display = ('city_name', 'region')
 
 
 class PolyclinicAdmin(admin.ModelAdmin):

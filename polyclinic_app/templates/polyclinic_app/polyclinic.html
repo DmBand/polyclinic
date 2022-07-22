@@ -17,7 +17,7 @@
             <div class="polyclinic">
                 <h2 class="p-title">{{ p.name }}</h2>
                 <p class="p-address">ул. {{ p.address }}</p>
-                <a href="tel:{{ phone_code }}{{ p.phone }}" class="p-phone">Регистратура: <span class="tel">{{ p.phone }}</span></a>
+                <a href="tel:{{ phone_code }}{{ p.phone }}" class="p-phone">Регистратура: <span class="tel">{{ phone_code }} {{ p.phone }}</span></a>
                 <a href="{{ p.making_an_appointment }}" class="mp-link" target="_blank">Записаться на прием</a>                                             
                 <a href="{{ p.url }}" class="p-url" target="_blank">официальный сайт</a>
             </div>

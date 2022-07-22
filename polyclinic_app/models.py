@@ -17,7 +17,7 @@ class Region(models.Model):
 
 class City(models.Model):
     """ Город """
-    name = models.CharField(max_length=50, verbose_name='город')
+    city_name = models.CharField(max_length=50, verbose_name='город')
     slug = models.SlugField(max_length=50, verbose_name='url')
     phone_code = models.CharField(max_length=10, verbose_name='телефонный код')
     region = models.ForeignKey(
@@ -29,7 +29,7 @@ class City(models.Model):
         verbose_name_plural = 'города'
 
     def __str__(self):
-        return self.name
+        return self.city_name
 
 
 class Polyclinic(models.Model):

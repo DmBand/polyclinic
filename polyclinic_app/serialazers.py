@@ -5,7 +5,7 @@ from polyclinic_app.models import Polyclinic, Region, City
 
 class PolyclinicWithCitySerializer(serializers.ModelSerializer):
     """ Одна поликлиника (с городом)"""
-    city = serializers.SlugRelatedField(slug_field='name', read_only=True)
+    city = serializers.SlugRelatedField(slug_field='city_name', read_only=True)
 
     class Meta:
         model = Polyclinic
@@ -38,7 +38,8 @@ class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = (
-            'name',
+            'city_name',
+            'phone_code',
             'polyclinics',
         )
 

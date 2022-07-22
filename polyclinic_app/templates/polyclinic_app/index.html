@@ -16,7 +16,7 @@
     <h1 class="main-title">Выберите область</h1>
     <div class="regions-and-cities">
         {% for r in regions %}
-            <a href="{% url 'polyclinic_app:city' r.slug %}" class="region-link">{{ r.name }}</a>
+            <a href="{% url 'polyclinic_app:city' r.slug %}" class="region-link">{{ r.region }}</a>
         {% endfor %}
     </div>
 </div>

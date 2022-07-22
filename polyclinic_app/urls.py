@@ -1,11 +1,12 @@
-from django.urls import path
-from .views import *
+from django.urls import path, include
+from . import views
 
 
 app_name = 'polyclinic_app'
 
 urlpatterns = [
-    path('', index_view, name='index'),
-    path('region/<slug:slug_url>/', city_view, name='city'),
-    path('polyclinic/<slug:slug_url>/', polyclinic_view, name='polyclinic'),
+    path('', views.index_view, name='index'),
+    path('region/<slug:slug_url>/', views.city_view, name='city'),
+    path('polyclinic/<slug:slug_url>/', views.polyclinic_view, name='polyclinic'),
+    path('api_documentation/', views.api_view, name='api'),
 ]
