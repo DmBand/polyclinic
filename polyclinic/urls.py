@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from polyclinic import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +24,8 @@ urlpatterns = [
     # api
     path('api/v1/', include('polyclinic_app.drf_urls'), name='api'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('__debug__/', include('debug_toolbar.urls')),
+    ]
