@@ -32,7 +32,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -46,6 +48,8 @@ INSTALLED_APPS = [
     # my apps
     'polyclinic_app.apps.PolyclinicAppConfig',
     'rest_framework',
+    # debug toolbar
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -56,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'polyclinic.urls'
@@ -137,3 +142,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ]
 }
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
