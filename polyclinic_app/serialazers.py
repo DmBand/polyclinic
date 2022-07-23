@@ -1,22 +1,22 @@
 from rest_framework import serializers
 
-from polyclinic_app.models import Polyclinic, Region, City
+from polyclinic_app.models import Polyclinic, Region, City, PhoneNumber
 
 
-class PolyclinicWithCitySerializer(serializers.ModelSerializer):
-    """ Одна поликлиника (с городом)"""
-    city = serializers.SlugRelatedField(slug_field='city_name', read_only=True)
+class PhoneNumberSerializer(serializers.ModelSerializer):
+    """ Номер телефона """
 
     class Meta:
-        model = Polyclinic
-        exclude = (
-            'id',
-            'user',
+        model = PhoneNumber
+        fields = (
+            'name',
+            'number',
         )
 
 
 class PolyclinicSerializer(serializers.ModelSerializer):
-    """ Одна поликлиника (без города)"""
+    """ Поликлиника (без города)"""
+    phone = PhoneNumberSerializer(many=True)
 
     class Meta:
         model = Polyclinic
@@ -25,14 +25,13 @@ class PolyclinicSerializer(serializers.ModelSerializer):
             'name',
             'address',
             'phone',
-            'url',
+            'website',
             'making_an_appointment',
         )
 
 
 class CitySerializer(serializers.ModelSerializer):
-    """ Город """
-
+    """ Город (с поликлиниками)"""
     polyclinics = PolyclinicSerializer(many=True)
 
     class Meta:
@@ -44,14 +43,41 @@ class CitySerializer(serializers.ModelSerializer):
         )
 
 
+class CityWithoutPolyclinicSerializer(serializers.ModelSerializer):
+    """ Город (без поклклиник)"""
+
+    class Meta:
+        model = City
+        fields = (
+            'city_name',
+            'phone_code',
+        )
+
+
+class PolyclinicWithCitySerializer(serializers.ModelSerializer):
+    """ Поликлиника (с городом)"""
+    city = CityWithoutPolyclinicSerializer(many=False)
+    phone = PhoneNumberSerializer(many=True)
+
+    class Meta:
+        model = Polyclinic
+        fields = (
+            'city',
+            'name',
+            'address',
+            'phone',
+            'website',
+            'making_an_appointment',
+        )
+
+
 class RegionSerializer(serializers.ModelSerializer):
     """ Область """
-
-    city = CitySerializer(many=True)
+    cities = CitySerializer(many=True)
 
     class Meta:
         model = Region
         fields = (
             'region',
-            'city',
+            'cities',
         )
