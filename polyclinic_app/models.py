@@ -30,6 +30,7 @@ class City(models.Model):
     slug = models.SlugField(
         max_length=50,
         verbose_name='url',
+        unique=True,
     )
     phone_code = models.CharField(
         max_length=10,
