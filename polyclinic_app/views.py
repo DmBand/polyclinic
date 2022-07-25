@@ -41,16 +41,7 @@ def city_view(request, slug_url):
 def polyclinic_view(request, slug_url):
     """ Страница выбора поликлиники """
     city = City.objects.get(slug=slug_url)
-    polyclinics = (
-        city.polyclinics
-        .select_related('city')
-        .values(
-            'name',
-            'address',
-            'website',
-            'making_an_appointment',
-        )
-    )
+    polyclinics = city.polyclinics.all()
     context = {
         'title': f'Поликлиники: {city.region}',
         'polyclinics': polyclinics,
