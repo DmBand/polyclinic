@@ -25,17 +25,31 @@
     color: #ee8b6d;
     font-weight: 700;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .p-address {
     margin-top: 10px;
     font-size: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.numbers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 20px;
 }
 
 .p-phone {
     margin-top: 10px;
     font-size: 15px;
     color: #f5f0e1;
+    text-align: center;
 }
 
 .tel {
