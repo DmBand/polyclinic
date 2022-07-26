@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from .models import Region, City
@@ -14,9 +15,9 @@ def index_view(request):
         'regions': regions,
     }
     if request.method == 'POST':
-        city = city_search(request=request)
-        if city:
-            return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
+        result = city_search(request=request)
+        if result:
+            return result
     return render(request, 'polyclinic_app/index.html', context)
 
 
@@ -32,9 +33,9 @@ def city_view(request, slug_url):
         'cities': cities
     }
     if request.method == 'POST':
-        city = city_search(request=request)
-        if city:
-            return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
+        result = city_search(request=request)
+        if result:
+            return result
     return render(request, 'polyclinic_app/city.html', context)
 
 
@@ -48,9 +49,9 @@ def polyclinic_view(request, slug_url):
         'phone_code': city.phone_code
     }
     if request.method == 'POST':
-        city = city_search(request=request)
-        if city:
-            return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
+        result = city_search(request=request)
+        if result:
+            return result
     return render(request, 'polyclinic_app/polyclinic.html', context)
 
 
@@ -73,7 +74,7 @@ def api_view(request):
             context['one_polyclinic_url'] = str(link.pattern)[:-9]
 
     if request.method == 'POST':
-        city = city_search(request=request)
-        if city:
-            return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
+        result = city_search(request=request)
+        if result:
+            return result
     return render(request, 'polyclinic_app/api.html', context)

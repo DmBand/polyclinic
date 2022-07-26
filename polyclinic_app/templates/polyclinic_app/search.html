@@ -1,0 +1,12 @@
+{% extends 'polyclinic_app/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock title %}
+
+{% block content %}
+{% for c in cities %}
+{{ c }}
+{% endfor %}
+{% endblock content %}
