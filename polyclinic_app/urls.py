@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.index_view, name='index'),
     path('region/<slug:slug_url>/', views.city_view, name='city'),
     path('polyclinic/<slug:slug_url>/', views.polyclinic_view, name='polyclinic'),
+    path('searching_results/', views.search_view, name='search'),
     path('api_documentation/', views.api_view, name='api'),
 ]

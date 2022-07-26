@@ -17,14 +17,13 @@
     <div class="wrapper">
         <header class="header">
             <a href="{% url 'polyclinic_app:index' %}" class="main-link" title="На главную"></a>
-            <form action="" class="search-form" method="post">
-                {% csrf_token %}
+            <form action="{% url 'polyclinic_app:search' %}" class="search-form" method="get">
                 {% if messages %}
                     {% for m in messages %}
                     <p class="error">{{ m }}</p>
                     {% endfor %}
                 {% endif %}  
-                <input type="text" name="city" class="input" placeholder="Введите название города">
+                <input type="text" name="city" class="input" placeholder="Введите название города" required>
                 <button type="submit" class="submit">Найти</button>                
             </form>
         </header>

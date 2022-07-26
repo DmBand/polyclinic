@@ -6,7 +6,11 @@
 {% endblock title %}
 
 {% block content %}
-{% for c in cities %}
-{{ c }}
-{% endfor %}
+{% if cities %}
+    {% for c in cities %}
+    {{ c }}
+    {% endfor %}
+{% else %}
+<p>No result</p>
+{% endif %}
 {% endblock content %}
