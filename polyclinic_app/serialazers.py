@@ -9,7 +9,7 @@ class PhoneNumberSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhoneNumber
         fields = (
-            'name',
+            'title',
             'number',
         )
 

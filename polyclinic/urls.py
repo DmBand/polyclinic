@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('polyclinic_app.urls')),
     # api
-    path('api/v1/', include('polyclinic_app.drf_urls'), name='api'),
+    path('api/v1/', include('polyclinic_app.drf_urls')),
 ]
 
 if settings.DEBUG:

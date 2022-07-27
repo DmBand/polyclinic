@@ -21,11 +21,11 @@ class CityAdmin(admin.ModelAdmin):
 class PhoneNumberAdmin(admin.ModelAdmin):
     list_display = (
         'polyclinic',
-        'name',
+        'title',
         'number',
     )
     list_display_links = (
-        'name',
+        'title',
         'number'
     )
     list_filter = (

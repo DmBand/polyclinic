@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from .models import Region, City
 from . import drf_urls
-from polyclinic import urls
+from polyclinic import urls, settings
 from .services import redirect_polycinic
 
 
@@ -60,7 +60,9 @@ def polyclinic_view(request, slug_url):
 def api_view(request):
     """ Страница документации API """
     host = request.get_host()
-    main_url = urls.urlpatterns[-1].pattern
+    main_url = (urls.urlpatterns[-2].pattern
+                if settings.DEBUG
+                else urls.urlpatterns[-1].pattern)
     context = {
         'title': 'Документация API',
         'host': host,

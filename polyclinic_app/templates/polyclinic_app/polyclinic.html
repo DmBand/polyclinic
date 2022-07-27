@@ -19,7 +19,7 @@
                 <p class="p-address">ул. {{ p.address }}</p>
                 <div class="numbers">
                 {% for number in p.phone.all %}
-                <a href="tel:{{ phone_code }}{{ number.number }}" class="p-phone">{{ number.name }}: <span class="tel">{{ phone_code }} {{ number.number }}</span></a>
+                <a href="tel:{{ phone_code }}{{ number.number }}" class="p-phone">{{ number.title }}: <span class="tel">{{ phone_code }} {{ number.number }}</span></a>
                 {% endfor %}
                 </div>
                 <a href="{{ p.making_an_appointment }}" class="mp-link" target="_blank">Записаться на прием</a>                                             

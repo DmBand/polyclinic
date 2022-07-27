@@ -26,8 +26,7 @@
 
 .api-img {
     width: 600px;
-    height: 200px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 @media (max-width: 768px) {
@@ -79,7 +78,7 @@
     }
 
     .api-url {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .api-img {
