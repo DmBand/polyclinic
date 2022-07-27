@@ -8,8 +8,7 @@ def searching_city(request):
     """ Поиск города в БД """
     get_city = request.POST.get('city')
     if get_city:
-        exists = City.objects.filter(city_name__iexact=get_city.title()).exists()
-        if exists:
+        if City.objects.filter(city_name__iexact=get_city.title()).exists():
             city = City.objects.get(city_name=get_city.title())
             return city
 
