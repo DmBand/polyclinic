@@ -17,7 +17,8 @@
     <div class="wrapper">
         <header class="header">
             <a href="{% url 'polyclinic_app:index' %}" class="main-link" title="На главную"></a>
-            <form action="{% url 'polyclinic_app:search' %}" class="search-form" method="get">
+            <form action="" class="search-form" method="post">
+                {% csrf_token %}
                 {% if messages %}
                     {% for m in messages %}
                     <p class="error">{{ m }}</p>

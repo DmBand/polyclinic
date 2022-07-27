@@ -1,26 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from .models import Region, City
 from . import drf_urls
 from polyclinic import urls
-
-
-def search_view(request):
-    """ Поиск по городу """
-    context = {
-        'title': 'Результаты поиска',
-        'cities': None,
-    }
-    get_city = request.GET.get('city')
-    if get_city:
-        exists = City.objects.filter(city_name__iexact=get_city.title()).exists()
-        if exists:
-            cities = City.objects.filter(city_name=get_city.title())
-            if len(cities) > 1:
-                context['cities'] = cities
-            else:
-                return redirect('polyclinic_app:polyclinic', slug_url=cities[0].slug)
-    return render(request, 'polyclinic_app/search.html', context)
+from .services import redirect_polycinic
 
 
 def index_view(request):
@@ -30,6 +13,11 @@ def index_view(request):
         'title': 'Поликлиники Беларуси',
         'regions': regions,
     }
+
+    if request.method == 'POST':
+        searching_result = redirect_polycinic(request=request)
+        if searching_result:
+            return searching_result
     return render(request, 'polyclinic_app/index.html', context)
 
 
@@ -44,6 +32,11 @@ def city_view(request, slug_url):
         'title': region.region,
         'cities': cities
     }
+
+    if request.method == 'POST':
+        searching_result = redirect_polycinic(request=request)
+        if searching_result:
+            return searching_result
     return render(request, 'polyclinic_app/city.html', context)
 
 
@@ -56,6 +49,11 @@ def polyclinic_view(request, slug_url):
         'polyclinics': polyclinics,
         'phone_code': city.phone_code
     }
+
+    if request.method == 'POST':
+        searching_result = redirect_polycinic(request=request)
+        if searching_result:
+            return searching_result
     return render(request, 'polyclinic_app/polyclinic.html', context)
 
 
@@ -75,4 +73,9 @@ def api_view(request):
             context['all_polyclinics_url'] = str(link.pattern)
         elif link.name == 'one':
             context['one_polyclinic_url'] = str(link.pattern)[:-9]
+
+    if request.method == 'POST':
+        searching_result = redirect_polycinic(request=request)
+        if searching_result:
+            return searching_result
     return render(request, 'polyclinic_app/api.html', context)
