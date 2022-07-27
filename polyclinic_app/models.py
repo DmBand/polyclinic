@@ -92,7 +92,7 @@ class Polyclinic(models.Model):
 
 class PhoneNumber(models.Model):
     """ Номер телефона """
-    name = models.CharField(
+    title = models.CharField(
         max_length=30,
         verbose_name='имя',
     )
@@ -112,4 +112,4 @@ class PhoneNumber(models.Model):
         verbose_name_plural = 'телефоны'
 
     def __str__(self):
-        return self.name
+        return self.title
