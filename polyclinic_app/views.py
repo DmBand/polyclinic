@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 from .models import Region, City
 from . import drf_urls
@@ -6,38 +7,49 @@ from polyclinic import urls, settings
 from .services import redirect_polycinic
 
 
-def index_view(request):
+class IndexView(ListView):
     """ Главная страница """
-    regions = Region.objects.values('region', 'slug')
-    context = {
-        'title': 'Поликлиники Беларуси',
-        'regions': regions,
-    }
+    template_name = 'polyclinic_app/index.html'
+    context_object_name = 'regions'
+    queryset = Region.objects.values('region', 'slug')
 
-    if request.method == 'POST':
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['title'] = 'Поликлиники Беларуси'
+        return context
+
+    def post(self, request, **kwargs):
         searching_result = redirect_polycinic(request=request)
         if searching_result:
             return searching_result
-    return render(request, 'polyclinic_app/index.html', context)
+
+        context = self.get_context_data(object_list=self.queryset, **kwargs)
+        return render(request, self.template_name, context)
 
 
-def city_view(request, slug_url):
+class CityView(ListView):
     """ Страница выбора города """
-    region = Region.objects.get(slug=slug_url)
-    cities = (
-        region.cities
-        .values('city_name', 'slug')
-        .order_by('city_name'))
-    context = {
-        'title': region.region,
-        'cities': cities
-    }
+    template_name = 'polyclinic_app/city.html'
+    context_object_name = 'cities'
 
-    if request.method == 'POST':
+    def get_queryset(self):
+        return (City.objects
+                .filter(region__slug=self.kwargs['slug_url'])
+                .values('city_name', 'slug'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        region = Region.objects.filter(slug=self.kwargs['slug_url']).values('region')
+        context['title'] = region[0].get('region')
+        return context
+
+    def post(self, request, **kwargs):
         searching_result = redirect_polycinic(request=request)
         if searching_result:
             return searching_result
-    return render(request, 'polyclinic_app/city.html', context)
+
+        context = self.get_context_data(object_list=self.get_queryset(), **kwargs)
+        return render(request, self.template_name, context)
 
 
 def polyclinic_view(request, slug_url):
