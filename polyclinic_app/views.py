@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.views import View
 from django.views.generic import ListView, DetailView
 
 from .models import Region, City
@@ -28,38 +27,29 @@ class IndexView(ListView):
         return render(request, self.template_name, context)
 
 
-# def index_view(request):
-#     """ Главная страница """
-#     regions = Region.objects.values('region', 'slug')
-#     context = {
-#         'title': 'Поликлиники Беларуси',
-#         'regions': regions,
-#     }
-#
-#     if request.method == 'POST':
-#         searching_result = redirect_polycinic(request=request)
-#         if searching_result:
-#             return searching_result
-#     return render(request, 'polyclinic_app/index.html', context)
-
-
-def city_view(request, slug_url):
+class CityView(ListView):
     """ Страница выбора города """
-    region = Region.objects.get(slug=slug_url)
-    cities = (
-        region.cities
-        .values('city_name', 'slug')
-        .order_by('city_name'))
-    context = {
-        'title': region.region,
-        'cities': cities
-    }
+    template_name = 'polyclinic_app/city.html'
+    context_object_name = 'cities'
 
-    if request.method == 'POST':
+    def get_queryset(self):
+        return (City.objects
+                .filter(region__slug=self.kwargs['slug_url'])
+                .values('city_name', 'slug'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        region = Region.objects.filter(slug=self.kwargs['slug_url']).values('region')
+        context['title'] = region[0].get('region')
+        return context
+
+    def post(self, request, **kwargs):
         searching_result = redirect_polycinic(request=request)
         if searching_result:
             return searching_result
-    return render(request, 'polyclinic_app/city.html', context)
+
+        context = self.get_context_data(object_list=self.get_queryset(), **kwargs)
+        return render(request, self.template_name, context)
 
 
 def polyclinic_view(request, slug_url):
