@@ -19,7 +19,7 @@ from django.urls import path, include
 from polyclinic import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin_page/', admin.site.urls),
     path('', include('polyclinic_app.urls')),
     # api
     path('api/v1/', include('polyclinic_app.drf_urls')),
