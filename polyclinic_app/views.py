@@ -1,13 +1,12 @@
-from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
 
 from .models import Region, City, Polyclinic
 from . import drf_urls
 from polyclinic import urls, settings
-from .services import redirect_polycinic
+from .utils import POSTMixin
 
 
-class IndexView(ListView):
+class IndexView(POSTMixin, ListView):
     """ Главная страница """
     template_name = 'polyclinic_app/index.html'
     context_object_name = 'regions'
@@ -19,15 +18,10 @@ class IndexView(ListView):
         return context
 
     def post(self, request, **kwargs):
-        searching_result = redirect_polycinic(request=request)
-        if searching_result:
-            return searching_result
-
-        context = self.get_context_data(object_list=self.queryset, **kwargs)
-        return render(request, self.template_name, context)
+        return super().post(request, object_list=self.queryset, **kwargs)
 
 
-class CityView(ListView):
+class CityView(POSTMixin, ListView):
     """ Страница выбора города """
     template_name = 'polyclinic_app/city.html'
     context_object_name = 'cities'
@@ -44,15 +38,10 @@ class CityView(ListView):
         return context
 
     def post(self, request, **kwargs):
-        searching_result = redirect_polycinic(request=request)
-        if searching_result:
-            return searching_result
-
-        context = self.get_context_data(object_list=self.get_queryset(), **kwargs)
-        return render(request, self.template_name, context)
+        return super().post(request, object_list=self.get_queryset(), **kwargs)
 
 
-class PolyclinicView(ListView):
+class PolyclinicView(POSTMixin, ListView):
     """ Страница выбора поликлиники """
     template_name = 'polyclinic_app/polyclinic.html'
     context_object_name = 'polyclinics'
@@ -68,15 +57,10 @@ class PolyclinicView(ListView):
         return context
 
     def post(self, request, **kwargs):
-        searching_result = redirect_polycinic(request=request)
-        if searching_result:
-            return searching_result
-
-        context = self.get_context_data(object_list=self.get_queryset(), **kwargs)
-        return render(request, self.template_name, context)
+        return super().post(request, object_list=self.get_queryset(), **kwargs)
 
 
-class APIView(TemplateView):
+class APIView(POSTMixin, TemplateView):
     """ Страница документации API """
     template_name = 'polyclinic_app/api.html'
 
@@ -101,9 +85,4 @@ class APIView(TemplateView):
         return context
 
     def post(self, request, **kwargs):
-        searching_result = redirect_polycinic(request=request)
-        if searching_result:
-            return searching_result
-
-        context = self.get_context_data(**kwargs)
-        return render(request, self.template_name, context)
+        return super().post(request, **kwargs)

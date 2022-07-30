@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from polyclinic_app.models import City
 
@@ -24,3 +24,15 @@ def redirect_polycinic(request):
         return redirect('polyclinic_app:polyclinic', slug_url=city.slug)
     else:
         messages.info(request, message='Поиск не дал результатов')
+
+
+class POSTMixin:
+    """ Реализация метода POST """
+
+    def post(self, request, **kwargs):
+        searching_result = redirect_polycinic(request=request)
+        if searching_result:
+            return searching_result
+
+        context = self.get_context_data(**kwargs)
+        return render(request, self.template_name, context)
