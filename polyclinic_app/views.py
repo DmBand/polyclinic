@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
-from .models import Region, City
+from .models import Region, City, Polyclinic
 from . import drf_urls
 from polyclinic import urls, settings
 from .services import redirect_polycinic
@@ -52,21 +52,28 @@ class CityView(ListView):
         return render(request, self.template_name, context)
 
 
-def polyclinic_view(request, slug_url):
+class PolyclinicView(ListView):
     """ Страница выбора поликлиники """
-    city = City.objects.get(slug=slug_url)
-    polyclinics = city.polyclinics.all()
-    context = {
-        'title': f'Поликлиники: {city.region}',
-        'polyclinics': polyclinics,
-        'phone_code': city.phone_code
-    }
+    template_name = 'polyclinic_app/polyclinic.html'
+    context_object_name = 'polyclinics'
 
-    if request.method == 'POST':
+    def get_queryset(self):
+        return Polyclinic.objects.filter(city__slug=self.kwargs['slug_url'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        city = City.objects.get(slug=self.kwargs['slug_url'])
+        context['title'] = f'Поликлиники: {city.region}'
+        context['phone_code'] = city.phone_code
+        return context
+
+    def post(self, request, **kwargs):
         searching_result = redirect_polycinic(request=request)
         if searching_result:
             return searching_result
-    return render(request, 'polyclinic_app/polyclinic.html', context)
+
+        context = self.get_context_data(object_list=self.get_queryset(), **kwargs)
+        return render(request, self.template_name, context)
 
 
 def api_view(request):
