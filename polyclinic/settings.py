@@ -149,3 +149,6 @@ if DEBUG:
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# HTTPS
+SECURE_SSL_REDIRECT = True
