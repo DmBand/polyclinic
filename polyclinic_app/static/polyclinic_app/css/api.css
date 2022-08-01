@@ -4,6 +4,7 @@
 
 .documentation {
     margin-top: 30px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
